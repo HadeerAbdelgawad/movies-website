@@ -26,7 +26,7 @@ function Home() {
     return (
         <>
             {loading ? (
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
+                <div className="max-w-7xl sm:max-w-full mx-auto px-2 lg:px-8 pt-6 pb-12">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {Array.from({ length: 8 }).map((_, index) => (
                             <SkeletonLoader key={index} />
@@ -35,7 +35,7 @@ function Home() {
                 </div>
             ) : (
 
-                <div className="pt-6 pb-12 px-20">
+                <div className="pt-6 pb-12 lg:px-20">
 
                     {/* Hero / banner */}
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
