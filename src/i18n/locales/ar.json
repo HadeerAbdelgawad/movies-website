@@ -3,11 +3,25 @@
     "movies": "الافلام",
     "tvShows": "عروض التلفاز",
     "favorites": "المفضلات",
-    "HomeMoviesTitle": "أفلام شاتعة للمشاهدة",
+    "HomeMoviesTitle": "ألافلام الشائعة للمشاهدة",
     "HomeMoviesSubTitle": "اكثر الافلام مشاهده الان",
     "arabic": "العربيه",
     "english": "الانجليزيه",
-    "searchPlaceholder":"البحث عن افلام",
+    "searchPlaceholder":"البحث عن عروض، افلام والمزيد",
     "SuitableforAllAudiences":"مناسب لجميع الأعمار",
-    "AdultContent":"محتوى للكبار"
+    "AdultContent":"محتوى للكبار",
+    "register":"إنشاء حساب",
+    "login":"تسجيل دخول",
+    "Logout":"تسجيل خروج",
+    "Next":"التالى",
+    "Previous":"السابق",
+    "No Visuals To Show":"لا يوجد افلام للعرض",
+    "Trending TV Shows To Watch":" عروض التلفاز الشائعة للمشاهدة",
+    "Most popular TV shows right now":"اكثر عروض التلفاز مشاهده الان",
+    "trendingToday":"الشائع اليوم",
+    "trendingMovies":"الافلام الشائعة",
+    "trendingTVShows":"عروض التلفاز الشائعة",
+    "HomePeopleTitle":"المشاهير الشائعين للمشاهدة",
+    "HomePeopleSubTitle":"اكثر المشاهير مشاهده الان"
+
 }

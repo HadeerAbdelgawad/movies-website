@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAllTvShows } from "../../services/movies.api";
+import { getAllTvShows } from "../../services/tvShows.api";
 
 export const tvShowsAction= createAsyncThunk('tvShowsgetAll',async()=>{
     try{

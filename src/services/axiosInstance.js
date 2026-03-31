@@ -2,7 +2,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import store from "../store";
 import { changeLoader } from "../store/slices/loader";
-
+// https://api.themoviedb.org/3/authentication \
 export const axiosInstance = axios.create({
     baseURL:'https://api.themoviedb.org/',
     params:{

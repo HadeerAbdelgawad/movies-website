@@ -4,8 +4,24 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(),
-        tailwindcss(),
+  plugins: [react(), tailwindcss(),],
 
-  ],
+  test: {
+    globals: true,
+    environment: 'happy-dom',
+    setupFiles: './src/vitest.setup.js',
+    deps: {
+      optimizer: {
+        web: {
+          include: ['html-encoding-sniffer']
+        }
+      }
+    },
+    server: {
+      deps: {
+        inline: [/html-encoding-sniffer/, /@exodus\/bytes/],
+      },
+    },
+
+  },
 })

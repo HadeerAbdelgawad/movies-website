@@ -1,53 +1,139 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router'
 import { TbWorld } from "react-icons/tb";
-
+import { HiMenu, HiX } from "react-icons/hi";
+import { changeAuth } from '../../store/slices/auth';
 
 function Navbar() {
-    const navigate= useNavigate();
-    const favorite= useSelector((state)=>state.favorite.favorite)
-    console.log(favorite);
-    const {t , i18n} = useTranslation()
-    
-    
-    const changeLanguage=()=>{
-        const lang= localStorage.getItem('lang')=='en'?'ar':'en'
+    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const isLoggedin = useSelector((state) => state.auth.isLoggedin)
+    const favorite = useSelector((state) => state.favorite.favorite)
+    const { t, i18n } = useTranslation()
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const changeLanguage = () => {
+        const lang = localStorage.getItem('lang') == 'en' ? 'ar' : 'en'
         i18n.changeLanguage(lang)
         localStorage.setItem('lang', lang)
     }
 
-    const handleSearch= (query)=>{
-        if(query.trim()!=='') navigate(`/searchResult/${query}`)
+    const handleSearch = (query) => {
+        if (query.trim() !== '') navigate(`/searchResult/${query}`)
+    }
+
+    const logout = () => {
+        dispatch(changeAuth(false))
+        navigate('/login')
     }
 
     return (
-    <>
-    <nav className='text-white m-0'>
-        <div className='p-4 flex flex-col md:flex-row justify-between items-center'>
-            <div className='text-3xl font-semibold'>{t('movies')}</div>
-            <div className='flex flex-col md:flex-row justify-center items-center gap-4'>
-                <Link to="/" className='px-4'>{t('home')}</Link>
-                <Link to="/movies" className='px-4'>{t('movies')}</Link>
-                <Link to="/tv-shows" className='px-4'>{t('tvShows')}</Link>
-                <Link to="/favorites" className='px-4'>{t('favorites')}<span className='bg-gray-500 rounded-full px-2 text-gray-900 '>{favorite.length}</span></Link>
-            </div>
-            <div className='flex gap-4  items-center w-full md:w-xs mx-4'>
+        <nav className='text-white border-b border-gray-800'>
+            <div className='p-4 flex justify-between items-center max-w-7xl mx-auto'>
 
-                <button className='flex hover:cursor-pointer hover:shadow hover:shadow-gray-300 bg-gradient-to-r from-cyan-200 to-blue-500 text-gray-900 rounded-2xl px-2 py-1' 
-                    onClick={()=>{changeLanguage()}}><TbWorld className='text-2xl text-blue-700'/>
-                    {i18n.language=='ar'?t('english'):t('arabic')}
+                {/* Logo */}
+                <div className='text-3xl font-semibold text-cyan-300'>
+                    {t('movies')}
+                </div>
+
+                {/* Desktop Menu */}
+                <div className='hidden md:flex items-center gap-6'>
+                    <Link to="/">{t('home')}</Link>
+                    <Link to="/movies">{t('movies')}</Link>
+                    <Link to="/tv-shows">{t('tvShows')}</Link>
+
+                    {isLoggedin ? (
+                        <>
+                            <Link to="/favorites">
+                                {t('favorites')}
+                                <span className='bg-cyan-400 rounded-full px-2 text-slate-900 ml-2'>
+                                    {favorite.length}
+                                </span>
+                            </Link>
+                            <Link to="/trendingToday">{t('trendingToday')}</Link>
+                            <button onClick={logout} className='text-red-400 hover:cursor-pointer'>
+                                {t('Logout')}
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/login">{t('login')}</Link>
+                            <Link to="/register">{t('register')}</Link>
+                        </>
+                    )}
+                </div>
+
+                {/* Right Section */}
+                <div className='hidden md:flex items-center gap-4 w-1/3'>
+                    <button
+                        onClick={changeLanguage}
+                        className='flex bg-cyan-400 text-slate-900 rounded-full px-3 py-1 items-center gap-2'
+                    >
+                        <TbWorld />
+                        {i18n.language == 'ar' ? t('english') : t('arabic')}
+                    </button>
+
+                    <input
+                        type="search"
+                        placeholder={`${t('searchPlaceholder')}...`}
+                        className='w-full p-2 rounded-lg bg-slate-700 text-gray-200'
+                        onInput={(e) => handleSearch(e.target.value)}
+                    />
+                </div>
+
+                {/* Mobile Menu Button */}
+                <button
+                    className='md:hidden text-2xl'
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {isOpen ? <HiX /> : <HiMenu />}
                 </button>
-
-                <input type="search" placeholder={`${t('searchPlaceholder')}...`} className='w-full p-2 rounded-lg bg-gray-700'
-                onInput={(e)=>handleSearch(e.target.value)}/>
             </div>
-        </div>
-        
-    </nav>
-    </>
-    
+
+            {/* Mobile Dropdown */}
+            {isOpen && (
+                <div className='md:hidden flex flex-col gap-4 px-4 pb-4 bg-slate-900'>
+                    <Link to="/">{t('home')}</Link>
+                    <Link to="/movies">{t('movies')}</Link>
+                    <Link to="/tv-shows">{t('tvShows')}</Link>
+
+                    {isLoggedin ? (
+                        <>
+                            <Link to="/favorites">
+                                {t('favorites')} ({favorite.length})
+                            </Link>
+                            <Link to="/trendingToday">{t('trendingToday')}</Link>
+                            <button onClick={logout} className='text-red-400'>
+                                {t('Logout')}
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/login">{t('login')}</Link>
+                            <Link to="/register">{t('register')}</Link>
+                        </>
+                    )}
+
+                    <button
+                        onClick={changeLanguage}
+                        className='flex bg-cyan-400 text-slate-900 rounded-full px-3 py-1 items-center gap-2 w-fit'
+                    >
+                        <TbWorld />
+                        {i18n.language == 'ar' ? t('english') : t('arabic')}
+                    </button>
+
+                    <input
+                        type="search"
+                        placeholder={`${t('searchPlaceholder')}...`}
+                        className='w-full p-2 rounded-lg bg-slate-700 text-gray-200'
+                        onInput={(e) => handleSearch(e.target.value)}
+                    />
+                </div>
+            )}
+        </nav>
     )
 }
 

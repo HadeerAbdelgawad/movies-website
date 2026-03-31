@@ -3,14 +3,15 @@ import { getMoviesByPage } from '../../services/movies.api'
 import Card from '../../components/Card'
 import { useSelector } from 'react-redux'
 import Loader from '../../components/Loader'
+import { useTranslation } from 'react-i18next'
+import SkeletonLoader from '../../components/Skeleton'
 
 
 function Movies() {
     const [pageNumber, setPageNumber] = useState(1)
     const [movies, setMovies] = useState([])
     const loader = useSelector((state) => state.loader.loader)
-
-
+    const { t } = useTranslation()
 
     const moviesByPage = async (pageNumber) => {
         try {
@@ -27,7 +28,7 @@ function Movies() {
         setPageNumber(pageNumber + 1)
     }
     const handlePrevPagenation = () => {
-        if (page > 1) {
+        if (pageNumber > 1) {
             setPageNumber(pageNumber - 1)
         }
     }
@@ -38,16 +39,24 @@ function Movies() {
 
     return (
         <>
-            {loader ? <div className='flex justify-center items-center min-h-100 min-w-screen'><Loader /></div> :
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4'>
+            {loader ?
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {Array.from({ length: 8 }).map((_, index) => (
+                            <SkeletonLoader key={index} />
+                        ))}
+                    </div>
+                </div>
+                :
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 py-15 px-10 '>
                     {movies && movies.map((movie) => {
                         return (
                             <Card key={movie.id} movie={movie} />
                         )
                     })}
-                    <div className='col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4  flex justify-center items-center p-4'>
-                        <button className='bg-blue-500 text-white px-4 py-2 rounded-lg mx-2 hover:cursor-pointer' onClick={() => { handlePrevPagenation() }}>Previous</button>
-                        <button className='bg-blue-500 text-white px-4 py-2 rounded-lg mx-2  hover:cursor-pointer' onClick={() => { handleNextPagenation() }}>Next</button>
+                    <div className='col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-5 flex justify-center items-center p-4'>
+                        <button className='bg-blue-900 text-white px-4 py-2 rounded-lg mx-2 hover:cursor-pointer' onClick={() => { handlePrevPagenation() }}>{t('Previous')}</button>
+                        <button className='bg-blue-900 text-white px-4 py-2 rounded-lg mx-2  hover:cursor-pointer' onClick={() => { handleNextPagenation() }}>{t('Next')}</button>
                     </div>
 
                 </div>

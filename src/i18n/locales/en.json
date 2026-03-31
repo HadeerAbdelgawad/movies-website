@@ -3,12 +3,25 @@
     "movies":"Movies",
     "tvShows":"Tv Shows",
     "favorites":"Favorites",
-    "HomeMoviesTitle":"Trending Movies To Watch",
+    "HomeMoviesTitle":"Popular Movies To Watch",
     "HomeMoviesSubTitle":"Most popular movies right now",
     "arabic":"Arabic",
     "english":"English",
-    "searchPlaceholder":"Search movies",
+    "searchPlaceholder":"Search shows, movies and more",
     "SuitableforAllAudiences":"Suitable for All Audiences",
-    "AdultContent":"Adult Content"
+    "AdultContent":"Adult Content",
+    "register":"Register",
+    "login":"Login",
+    "Logout":"Logout",
+    "Previous":"Previous",
+    "Next":"Next",
+    "No Visuals To Show":"No Visuals To Show",
+    "Trending TV Shows To Watch":"Popular TV Shows To Watch",
+    "Most popular TV shows right now":"Most popular TV shows right now",
+    "trendingToday":"Trending Today",
+    "trendingMovies":"Trending Movies",
+    "trendingTVShows":"Trending TV Shows",
+    "HomePeopleTitle":"Popular People To Watch",
+    "HomePeopleSubTitle":"Most popular people right now"
 
 }

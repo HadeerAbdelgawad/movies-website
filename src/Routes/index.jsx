@@ -9,9 +9,12 @@ import Favoirate from '../pages/Favoirate'
 import Login from '../pages/Login'
 import ProtectedRoutes from '../components/ProtectedRoutes'
 import SearchResult from '../pages/SearchResult'
-import Home from '../pages/home'
 import Loader from '../components/Loader'
 import Register from '../pages/Register'
+import Home from '../pages/Home'
+import TrendingToday from '../pages/TrendingToday'
+import TvShowsDetails from '../pages/TvShowsDetails'
+import ShowVideos from '../pages/ShowVideos'
 
 
 function AppRoutes() {
@@ -20,15 +23,16 @@ function AppRoutes() {
         {path:'', element:<Layout/>, children:[
             {path:'', element:<Home/>},
             {path:'/movie-details/:id', element:<MovieDetails/>},
+            {path:'/tv-shows-details/:id', element:<TvShowsDetails/>},
             {path:'/movies', element:<Movies/>},
             {path:'/tv-shows', element:<TvShows/>},
             {path:'/login', element:<Login/>},
             {path:'/register', element:<Register/>},
             {path:'/loader', element:<Loader/>},
             {path:'/searchResult/:query', element:<SearchResult/>},
-            {path:'/favorites', element:<Favoirate/>},
-
-            
+            {path:'/favorites', element:<Favoirate/>}, 
+            {path:'/trendingToday', element:<TrendingToday/>},
+            {path:'/show-videos/:id/:mediaType' , element:<ShowVideos/>}  
         ]
     },
     {path:'*', element:<NotFound/>}
