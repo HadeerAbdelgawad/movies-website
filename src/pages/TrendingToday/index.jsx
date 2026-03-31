@@ -66,12 +66,12 @@ function TrendingToday() {
                 :
                 <div className="pt-6 pb-12">
                     {/* Hero / banner */}
-                    <div className="max-w-7xl justify-center items-center gap-2 text-center mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+                    <div className="max-w-4xl justify-center items-center gap-2 text-center mx-auto px-2 sm:px-4 lg:px-6 mb-2">
                         <div className="flex justify-center items-center gap-3 bg-slate-900/60 p-2 rounded-xl border border-gray-700 backdrop-blur-md">
                             <button
                                 onClick={() => setActiveSection('movies')}
                                 className={`flex-1 px-5 py-2 rounded-lg transition-all duration-300 ${activeSection === 'movies'
-                                    ? 'bg-cyan-500 text-white shadow-lg'
+                                    ? 'bg-cyan-500 text-gray-200 shadow-lg'
                                     : 'text-gray-400 hover:text-white hover:bg-slate-700'
                                     }`}
                             >

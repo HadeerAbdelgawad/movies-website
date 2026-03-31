@@ -31,16 +31,16 @@ function Navbar() {
     }
 
     return (
-        <nav className='text-white border-b border-gray-800'>
+        <nav className='px-3 text-white border-b border-gray-800'>
             <div className='p-4 flex justify-between items-center max-w-7xl mx-auto'>
 
                 {/* Logo */}
-                <div className='text-3xl font-semibold text-cyan-300'>
+                <div className='text-2xl font-semibold text-cyan-300'>
                     {t('movies')}
                 </div>
 
                 {/* Desktop Menu */}
-                <div className='hidden md:flex items-center gap-6'>
+                <div className='hidden md:flex items-center gap-5 text-sm'>
                     <Link to="/">{t('home')}</Link>
                     <Link to="/movies">{t('movies')}</Link>
                     <Link to="/tv-shows">{t('tvShows')}</Link>
@@ -67,7 +67,7 @@ function Navbar() {
                 </div>
 
                 {/* Right Section */}
-                <div className='hidden md:flex items-center gap-4 w-1/3'>
+                <div className='hidden md:flex items-center gap-4 '>
                     <button
                         onClick={changeLanguage}
                         className='flex bg-cyan-400 text-slate-900 rounded-full px-3 py-1 items-center gap-2'
@@ -76,12 +76,14 @@ function Navbar() {
                         {i18n.language == 'ar' ? t('english') : t('arabic')}
                     </button>
 
+                    {isLoggedin ? (
                     <input
                         type="search"
                         placeholder={`${t('searchPlaceholder')}...`}
-                        className='w-full p-2 rounded-lg bg-slate-700 text-gray-200'
+                        className='w-full p-1 rounded-lg bg-slate-700 text-gray-200'
                         onInput={(e) => handleSearch(e.target.value)}
                     />
+                    ):null}
                 </div>
 
                 {/* Mobile Menu Button */}

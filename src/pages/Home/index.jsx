@@ -35,7 +35,7 @@ function Home() {
                 </div>
             ) : (
 
-                <div className="pt-6 pb-12">
+                <div className="pt-6 pb-12 px-20">
 
                     {/* Hero / banner */}
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
