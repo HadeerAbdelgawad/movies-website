@@ -9,6 +9,7 @@ import { MdLocalMovies } from "react-icons/md";
 import { deleteFavorite } from '../../store/slices/favorite';
 import toast from 'react-hot-toast';
 import i18next from 'i18next';
+import defaultImg from '../../assets/images/default-movie.jpg'
 
 
 function Favoirate() {
@@ -39,7 +40,9 @@ function Favoirate() {
                     :
                     favorite.map((fav) => (
                         <div key={fav.id} className='relative col-span-1 bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300' >
-                            <img className='w-full h-72 object-cover' src={`https://image.tmdb.org/t/p/w500/${fav.poster_path}`} alt={fav.title ? fav.title : fav.name} />
+                            <img className='w-full h-72 object-cover' src={fav.poster_path
+                                ? `https://image.tmdb.org/t/p/w500/${fav.poster_path}`
+                                : defaultImg} alt={fav.title ? fav.title : fav.name} />
                             <div className='absolute top-3 right-3 bg-cyan-600 text-white px-2 py-1 rounded-md overflow-hidden flex items-center gap-2'>
                                 <p className='text-sm font-semibold'> {fav.vote_average} </p>
                             </div>
@@ -48,7 +51,7 @@ function Favoirate() {
                                 </p>
                             </div>
                             <div className='relative flex flex-col gap-2 p-4'>
-                                <h2 className='text-white text-xl font-bold'>{fav.title ? fav.title : fav.name}</h2>
+                                <h2 className='text-white text-lg font-bold'>{fav.title ? fav.title : fav.name}</h2>
                                 <div className={`absolute bottom-4 ${i18next.language == 'ar' ? 'left-3' : 'right-3'} flex items-center gap-1.5 px-2 py-1 bg-slate-900/80 backdrop-blur-md border border-white/10 rounded-full text-xs font-medium text-cyan-400`}>
                                     {fav.media_type === 'tv' ? (
                                         <><MdLiveTv className="text-sm" /> TV SERIES</>

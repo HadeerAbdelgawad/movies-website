@@ -91,16 +91,18 @@ function Home() {
             {error ? (
                 <div className="text-red-300 flex justify-center items-center py-8">{t('No Visuals To Show')}</div>
             ) : (
-                <div className="pt-8 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="mb-6">
-                        <h3 className="text-3xl font-semibold text-gray-100">{t('Trending TV Shows To Watch')}</h3>
-                        <p className="text-cyan-300 mt-1">{t('Most popular TV shows right now')}</p>
-                    </div>
+                <div className='pt-6 pb-12 lg:px-20'>
+                    <div className="pt-8 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="mb-6">
+                            <h3 className="text-3xl font-semibold text-gray-100">{t('Trending TV Shows To Watch')}</h3>
+                            <p className="text-cyan-300 mt-1">{t('Most popular TV shows right now')}</p>
+                        </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {tvShows && tvShows.map((tvShow) => (
-                            <Card movie={tvShow} key={tvShow.id} media_type='tv' />
-                        ))}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            {tvShows && tvShows.map((tvShow) => (
+                                <Card movie={tvShow} key={tvShow.id} media_type='tv' />
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}

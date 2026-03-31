@@ -49,7 +49,7 @@ function Navbar() {
                         <>
                             <Link to="/favorites">
                                 {t('favorites')}
-                                <span className='bg-cyan-400 rounded-full px-2 text-slate-900 ml-2'>
+                                <span className='bg-cyan-400 rounded-full px-2 text-bold text-slate-900 ml-1'>
                                     {favorite.length}
                                 </span>
                             </Link>
