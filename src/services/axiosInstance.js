@@ -7,7 +7,7 @@ export const axiosInstance = axios.create({
     baseURL:'https://api.themoviedb.org/',
     params:{
         language:'en-US',
-        api_key:'74603059ce18599b72730fabbd9572e3'
+        api_key:import.meta.env.VITE_APP_API_KEY
     }
 })
 
