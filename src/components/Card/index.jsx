@@ -44,7 +44,9 @@ function Card({ movie , media_type }) {
     return (
         <>
             <div key={movie.id} className='relative col-span-1 bg-slate-800/50 backdrop-blur-sm border border-gray-700 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300' >
-                <img className='w-full h-72 object-cover overflow-hidden' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path }` || `https://image.tmdb.org/t/p/w500/${movie.profile_path}`} alt={movie.title ? movie.title : movie.name} />
+                <img className='w-full h-72 object-cover overflow-hidden' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path }` || `https://image.tmdb.org/t/p/w500/${movie.profile_path}`} 
+                    alt={movie.title ? movie.title : movie.name} 
+                />
                 <div className='absolute top-3 right-3 bg-cyan-600 text-white px-2 py-1 rounded-md overflow-hidden flex items-center gap-2'>
                     <p className='text-sm font-semibold'> {movie.vote_average} </p>
                 </div>
